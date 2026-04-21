@@ -43,7 +43,7 @@ export class TentantDashboard implements OnInit {
     this.loadTickets();
   }
 
-  // 🔐 Load logged-in user
+  //  Load logged-in user
   loadUser() {
     const user = this.authService.getCurrentUser();
 
@@ -51,13 +51,7 @@ export class TentantDashboard implements OnInit {
     this.apartmentNumber = user?.apartmentNumber;
   }
 
-  // 📂 Load categories from backend
-  loadCategories() {
-    this.lookupService.getCategories().subscribe({
-      next: (res) => this.categories = res,
-      error: () => alert('Failed to load categories')
-    });
-  }
+  
 
   // 📊 Load statuses from backend
   loadStatuses() {
@@ -75,14 +69,14 @@ export class TentantDashboard implements OnInit {
     });
   }
 
-  // 📤 File upload (local system)
+  //  File upload (local system)
   onFileSelected(event: any) {
     if (event.target.files.length > 0) {
       this.selectedFile = event.target.files[0];
     }
   }
 
-  // 🚀 Submit ticket
+  //  Submit ticket
   submitTicket() {
 
     if (!this.newTicket.categoryId || !this.newTicket.description) {
@@ -111,12 +105,12 @@ export class TentantDashboard implements OnInit {
     });
   }
 
-  // 🔁 Convert statusId → name
+  //  Convert statusId → name
   getStatusName(statusId: number): string {
     return this.statuses.find(s => s.id === statusId)?.name || 'Unknown';
   }
 
-  // 🎨 Badge color
+  // Badge color
   getStatusClass(statusId: number): string {
     const status = this.getStatusName(statusId);
 
