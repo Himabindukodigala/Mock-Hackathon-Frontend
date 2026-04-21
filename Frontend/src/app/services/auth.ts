@@ -1,23 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class Auth {
+
   baseUrl = 'https://localhost:5001/api/auth';
 
   constructor(private http: HttpClient) {}
 
   login(data: any) {
-    return this.http.post(`${this.baseUrl}/login`, data);
+    return this.http.post<any>(`${this.baseUrl}/login`, data);
   }
 
-  register(data: any) {
-    return this.http.post(`${this.baseUrl}/register`, data);
+  getCurrentUser() {
+    return JSON.parse(localStorage.getItem('user') || '{}');
   }
 
-  getMe() {
-    return this.http.get(`${this.baseUrl}/me`);
+  getToken() {
+    return localStorage.getItem('token');
   }
 }

@@ -1,1 +1,69 @@
-<p>tentant-dashboard works!</p>
+<div class="container mt-4">
+
+  <!-- Welcome -->
+  <h4>
+    Welcome, {{userName}} (Apartment {{apartmentNumber}})
+  </h4>
+
+  <!-- 📝 Create Ticket -->
+  <div class="card mt-3 p-3">
+
+    <h5>New Maintenance Request</h5>
+
+    <!-- Category -->
+   
+
+    <!-- Description -->
+    <textarea class="form-control mb-2"
+      rows="3"
+      placeholder="Describe the issue..."
+      [(ngModel)]="newTicket.description">
+    </textarea>
+
+    <!-- File Upload -->
+    <input type="file"
+      class="form-control mb-2"
+      (change)="onFileSelected($event)" />
+
+    <!-- Submit -->
+    <button class="btn btn-primary w-100"
+      (click)="submitTicket()">
+      Submit Request
+    </button>
+
+  </div>
+
+  <!-- 📋 Ticket List -->
+  <div class="mt-4">
+
+    <h5>My Tickets</h5>
+
+    <table class="table table-bordered table-striped">
+
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let t of tickets">
+
+          <td>{{t.description}}</td>
+
+          <td>
+            <span class="badge"
+              [ngClass]="getStatusClass(t.statusId)">
+              {{getStatusName(t.statusId)}}
+            </span>
+          </td>
+
+        </tr>
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
