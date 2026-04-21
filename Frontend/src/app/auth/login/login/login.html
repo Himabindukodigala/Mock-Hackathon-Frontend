@@ -1,0 +1,40 @@
+<div class="auth-page">
+  <div class="auth-card">
+    <h2>FixIt Tenant Tracker</h2>
+    <p class="subtitle">Login</p>
+
+    <form (ngSubmit)="onLogin()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="loginData.email"
+          placeholder="Enter your email"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="loginData.password"
+          placeholder="Enter your password"
+        />
+      </div>
+
+      <button type="submit" [disabled]="isLoading">
+        {{ isLoading ? 'Logging in...' : 'Login' }}
+      </button>
+
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+    </form>
+
+    <div class="bottom-text">
+      <p>New tenant? <a routerLink="/register">Register here</a></p>
+    </div>
+  </div>
+</div>
