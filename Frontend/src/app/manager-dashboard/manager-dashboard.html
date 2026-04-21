@@ -1,0 +1,35 @@
+<div class="container mt-4">
+  <h4>Manager Dashboard</h4>
+
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th>Apartment</th>
+        <th>Issue</th>
+        <th>Status</th>
+        <th>Assign</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let t of tickets">
+        <td>{{t.apartment}}</td>
+        <td>{{t.description}}</td>
+        <td>{{t.status}}</td>
+
+        <td>
+          <select [(ngModel)]="t.selectedStaff" class="form-control mb-1">
+            <option *ngFor="let s of staffList" [value]="s.id">
+              {{s.name}}
+            </option>
+          </select>
+
+          <button class="btn btn-sm btn-primary"
+            (click)="assign(t)">
+            Assign
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
